@@ -24,6 +24,4 @@ public class Main {
             node = stack.pop();
         }
     }
-
-
 }
