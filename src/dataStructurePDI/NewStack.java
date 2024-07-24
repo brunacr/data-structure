@@ -75,7 +75,7 @@ public class NewStack { //Define a classe NewStack que representa a pilha
         }
     }
 
-    public void displayInvertedUntil(int limit) {
+    public void displayInvertedUntilFromTop(int limit) {
         NewStack auxStack = new NewStack(); //Cria uma nova pilha auxiliar
         Node current = top; //Inicializa a variável 'current' com o nó do topo da pilha original
         int count = 1; //Inicializa um contador para rastrear o número de nós processados
@@ -99,5 +99,28 @@ public class NewStack { //Define a classe NewStack que representa a pilha
             current = current.next; //Move para o próximo nó na pilha auxiliar
             count++; //Incrementa o contador
         }
+    }
+
+    public void displayUntilFromBottom(int limit) {
+        NewStack inverse = new NewStack(); // Cria uma nova pilha chamada inverse
+        Node current = top; // Inicializa um ponteiro current para percorrer a pilha a partir do topo (top)
+
+        // Inverte a pilha original
+        while (current != null) {
+            inverse.push(current.data); // Empilha os dados do nó atual na pilha inverse
+            current = current.next; // Avança para o próximo nó na pilha
+        }
+
+        NewStack aux = new NewStack(); // Cria uma nova pilha auxiliar chamada aux
+        int count = 0; // Inicializa uma variável count para controlar o número de elementos processados
+
+        // Desempilha da pilha invertida e empilha na pilha auxiliar até o limite
+        while (count < limit && !inverse.isEmpty()) {
+            aux.push(inverse.pop()); // Desempilha da pilha inverse e empilha na pilha aux
+            count++; // Incrementa o count
+        }
+
+        // Exibe os elementos da pilha auxiliar
+        aux.display();
     }
 }
